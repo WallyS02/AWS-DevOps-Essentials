@@ -83,6 +83,21 @@ Best practises:
 * **Principle of Least Privilege** - allow for only necessary communication
 * **Automate** VPC with IaC!
 ### CloudFront
+CloudFront is a global Content Delivery Network \(CDN\) service that caches and delivers content from Edge Locations. It allows for reducing latency and increasing the speed of content delivery.
+
+CloudFront consists of:
+* **Distributions** - configurations that specifies how and where content is distributed, has 2 types: Web Distribution - for HTTP/HTTPS, websites and APIs, RTMP Distribution - for real-time media streaming
+* **Edge Locations** - Points of presence \(PoPs\) scattered around the world that cache content close to end users
+* **Origin** - source of original content that CloudFront will cache and deliver, it might be e.g. S3 bucket, EC2 instance, ELB or Custom Origin \(e.g. on-premise server\)
+* **Cache Behaviors** - rules that define how CloudFront handles different types of requests and content based on URL, they control headers, cookies and URL parameters affecting cache
+* **Lambda@Edge** - executing Node.js/Python code on edge locations in response to events \(e.g. request/response modification\)
+
+Best practises:
+* **Configure appropriate cache lifetimes \(TTL\) and use file versioning** to optimize efficiency
+* **Integrate with WAF** to protect against SQL Injection, XSS attacks, etc.
+* **Use HTTPS** \(its obligatory\) with own SSL/TLS cerificates or managed by AWS ACM
+* **Automaticly invalidate cache after new version deployment** to prevent outdated cache
+* **Automate** CloudFront with IaC!
 ### Route 53
 ### Elastic Load Balancing \(ELB\)
 ### API Gateway
