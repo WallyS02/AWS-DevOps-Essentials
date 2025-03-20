@@ -58,7 +58,30 @@ Tips for optimizing costs:
 * Remove used resources - EBS volumes without EC2 assignment, Elastic IPs without active instances, forgotten EBS snapshots, etc.
 * Use Infracost with IaC to analyse costs
 ## Networking
-### VPC
+### Virtual Private Cloud \(VPC\)
+VPC the backbone of your infrastructure. It is a virtual, isolated network inside AWS cloud that is private and fully-configurable for its user. It allows for creating resources isolated from other networks in AWS. Each VPC exists in one region, for different regions there is different VPC.
+
+VPC consists of:
+* **CIDR Block** - IP address range that defines address space of VPC.
+* **Subnets** - Divided into public and private, they represent IP address range inside VPC. Public subnets have an internet access through Internet Gateway, private subnet do not have direct internet access, they communicate through NAT Gateway. Each subnet is a part of one Availability Zone.
+* **Route Tables** - Define how network traffic is routed within a VPC.
+* **Internet Gateways** - Allow for communication between resources in VPC and internet.
+* **NAT Gateways** - Allow for internet access from private subnets.
+* **Security Groups** - Instance-level stateful firewalls that e.g. define open ports, IP addresses that can communicate with instance and allowed protocols.
+* **Network ACL** - Subnet-level stateless firewalls that allow or deny traffic from chosen protocol, port range and source IP addresses.
+* **VPC Endpoints** - Allow for private access to resources \(e.g. S3 or DynamoDB for free\) without using NAT Gateway or Internet Gateway.
+
+**VPC Peering** is connecting different VPCs \(even from different regions\) without using Internet Gateway.
+
+Best practises:
+* **Plan address space** - avoid address conflicts and ensure scalability, use large CIDR ranges \(e.g. /16\) and divide them to subnets
+* **Divide on public and private subnets**
+* **Multi-AZ** - spread private and public subnets across at least 2 Availability Zones
+* **Use Bastion Host** - to access private resources in private subnets, e.g. EC2 inside a public subnet as the only SSH access point to private instances
+* **Minimize Internet Exposure** - expose only necessary resources in public subnets
+* **Minimize Costs** - use NAT Gateways only when internet access from private subnet is necessary
+* **Principle of Least Privilege** - allow for only necessary communication
+* **Automate** VPC with IaC!
 ### CloudFront
 ### Route 53
 ### Elastic Load Balancing \(ELB\)
