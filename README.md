@@ -95,8 +95,8 @@ CloudFront consists of:
 Best practises:
 * **Configure appropriate cache lifetimes \(TTL\) and use file versioning** to optimize efficiency
 * **Integrate with WAF** to protect against SQL Injection, XSS attacks, etc.
-* **Use HTTPS** \(its obligatory\) with own SSL/TLS cerificates or managed by AWS ACM
-* **Automaticly invalidate cache after new version deployment** to prevent outdated cache
+* **Use HTTPS** \(its obligatory\) with own SSL/TLS certificates or managed by AWS ACM
+* **Automatically invalidate cache after new version deployment** to prevent outdated cache
 * **Automate** CloudFront with IaC!
 ### Route 53
 ### Elastic Load Balancing \(ELB\)
