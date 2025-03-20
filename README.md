@@ -24,6 +24,39 @@ Use **Multi-Factor Authentication \(MFA\)** to enhance security of users account
 Avoid using **root account**, use it only to create new users.\
 **Automate** IAM with IaC!
 ### Billing & Costs
+Managing costs is a must - always do it carefully to avoid unexpected costs and optimizing them without compromising performance.
+
+AWS uses **Pay-As-You-Go payment model** which means that you only pay for what you use, e.g. if you use EC2 instance for 5 hours - you pay for 5 hour EC2 usage.\
+Another thing to remember is **Tiered Pricing** which means that the more you use, the less you pay for an unit, e.g. the cost of storing data in S3 decreases as the amount of data stored increases.\
+You can use different price models:
+* **On-Demand** - standard usage with no strings attached, highest price
+* **Reserved Instances** - reserving resources on longer period to pay less for their usage
+* **Saving Plans** - flexible commitment to a specific hourly amount \(e.g. $0.05/hour for EC2\), lower costs than On-Demand
+* **Spot Instances** - cheap, but can be interrupted by AWS \(ideal for interruption-tolerant workloads\)\
+Even if you don't want to pay anything - use **Free Tier** that provides limited access to some services for 12 months.
+
+Main costs sources are:
+* Compute services like EC2 and Lambda
+* Storage services like S3 and EBS
+* Data transfer services like cross-region transfer or traffic egressing AWS
+* Managed services like RDS or CloudWatch
+
+Tools for managing costs:
+* **Cost Explorer** - visualization of costs over time, filtering by services, tags, regions
+* **Budgets** - set budget thresholds and alerts \(e.g. when EC2 spend exceeds 80% of the limit\)\
+**How to add Budget?**
+1. Navigate to Billing and Cost Management, then to Budgets
+2. Choose Create Budget
+3. Select if you want to use templates or customize your budget, provide nessesary data.
+
+Tips for optimizing costs:
+* Right Sizing - matching the size of resources to actual needs, e.g. select optimal EC2 type
+* Auto Scaling - automatic scaling of resources depending on workload
+* Resource Tagging - tag resources to analyse costs by projects, environments, etc.
+* Alerts - set up alerts for unexpected cost rises
+* Automatic resource shutdown - use Lambda + CloudWatch Events to shut down unused dev/test environments after hours
+* Remove used resources - EBS volumes without EC2 assignment, Elastic IPs without active instances, forgotten EBS snapshots, etc.
+* Use Infracost with IaC to analyse costs
 ## Networking
 ### VPC
 ### CloudFront
