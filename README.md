@@ -99,7 +99,34 @@ Best practises:
 * **Automatically invalidate cache after new version deployment** to prevent outdated cache
 * **Automate** CloudFront with IaC!
 ### Route 53
+Route 53 is DNS \(Domain Name Service\) service. It allows for registering domains and routing network traffic by translating domains to IPs \(normal DNS\) maintaining high availability and scalability. Name comes from DNS port - 53 - and routing network traffic idea.
+
+Route 53 consists of:
+* **Hosted Zones** - holds Records Sets, divided on public and private, public - maps domain names to public IP addresses, private - maps domain names inside VPC with internal name resolution
+* **Records Sets** - DNS records that define how network traffic is routed, record types below
+  * **A** - IPv4 mapping
+  * **AAAA** - IPv6 mapping
+  * **CNAME** - another domain name mapping
+  * **MX** - mail server records
+  * **TXT** - text records, usually used for domain ownership verification
+  * **ALIAS** - native AWS alias, directly maps to resources \(e.g. maps to ALB, S3, CloudFront\)
+* **Routing Policies** - define how network traffic should be routed, policies types below
+  * **Simple Routing** - default routing \(one record -> one resource\)
+  * **Weighted Routing** - routes network traffic based on assigned weights \(e.g. 70% to region A, 30% to region B\)
+  * **Latency-Based Routing** - routes network traffic to resource with lowest latency
+  * **Failover Routing** - routes network traffic to backup resource in case of failure of the main one
+  * **Geolocation Routing** - routes network traffic based on user's geographic location
+* **Health Checks** - resource status monitoring mechanism that automatically redirects network traffic to healthy resources
+
+Best practises:
+* **Use Health Checks** to avoid routing to unhealthy resources, try to implement automatic fix procedures \(with e.g. Lambda\)
+* **Avoid using CNAME for main domain**, instead use ALIAS - cheaper and faster
+* **Adjust Time to Live \(TTL\) value**, short \(e.g. 60s\) for dynamically changed domains, long \(24h\) for stable records
+* **Separate environments with Hosted Zones**, e.g. prod/dev
+* **Use Geolocation Routing for EU users to direct them to GDPR-compliant regions**
+* **Automate** Route 53 with IaC!
 ### Elastic Load Balancing \(ELB\)
+
 ### API Gateway
 ## Computing
 ### Elastic Compute Cloud \(EC2\)
@@ -121,6 +148,7 @@ Best practises:
 ## Security
 ### Key Management Service \(KMS\)
 ### Secrets Manager
+### Certificate Manager \(ACM\)
 ### Web Application Firewall \(WAF\)
 ## Monitoring
 ### CloudWatch
