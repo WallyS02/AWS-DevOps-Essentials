@@ -126,21 +126,43 @@ Best practises:
 * **Use Geolocation Routing for EU users to direct them to GDPR-compliant regions**
 * **Automate** Route 53 with IaC!
 ### Elastic Load Balancing \(ELB\)
+ELB is, like name suggests, a load balancer - service that automatically distributes incoming network traffic across multiple destinations to provide high availability, scalability and proper efficiency of application.
 
+ELB types:
+* **Application Load Balancer \(ALB\)** - works in the application layer \(7th - ISO-OSI\), best for balancing HTTP/HTTPS traffic, routing is based on URL paths, hosts and HTTP headers, suits web applications
+* **Network Load Balancer \(NLB\)** - works in the transport layer \(4th - ISO-OSI\), best for balancing TCP/UDP traffic, works with static IP and maintains source IP of client, suits applications that need high throughput and low latency \(e.g. online games or VoIP apps\)
+* **Gateway Load Balancer \(GWLB\)** - traffic routed through virtual appliances in VPC
+* **Classic Load Balancer \(CLB\)** - legacy!, works in application and transport layer, balances both HTTP/HTTPS and TCP/UDP traffic
+
+ELB consists of:
+* **Listeners** - defines ports and protocols that load balancer will listen for, for ALB also defines routing rules - explanation below
+  * **Routing Rules** - divides on: Path-based routing - routes by URL path, Host-based routing - routes by host, Redirects/Forwarding - HTTP -> HTTPS redirects
+* **Target Groups** - defines instances, containers or IP addresses to which the load balancer routes traffic
+* **Health Checks** - target status monitoring mechanism that determines whether a target is able to handle traffic, unhealthy targets are excluded from load distribution
+
+Best practises:
+* **Use Health Checks** to avoid routing to unhealthy resources
+* **Use correct type of load balancer for its purpose**
+* **Deploy across multiple Availability Zones and use Cross-Zone Load Balancing \(automatic traffic distribution across AZs\)**
+* **Integrate with WAF** to protect from SQL Injection and XSS attacks
+* **Use SSL/TLS Termination** to enable load balancer to handle SSL decryption, offloading the backend
+* **Integrate with Auto Scaling** to automatically add or remove instances in response to load
+* **Automate** ELB with IaC!
 ### API Gateway
 ## Computing
 ### Elastic Compute Cloud \(EC2\)
 ### Auto Scaling
+### Elastic Beanstalk
 ### Lambda
 ### Elastic Container Service \(ECS\)
+### Fargate
 ### Elastic Kubernetes Service \(EKS\)
-### Elastic Beanstalk
 ## Storage
 ### Simple Storage Service \(S3\)
 ### Elastic Block Store \(EBS\)
 ### Elastic File System \(EFS\)
-### Elastic Container Registry \(ECR\)
 ### Glacier
+### Elastic Container Registry \(ECR\)
 ## Databases
 ### Relational Database Service \(RDS\)
 ### DynamoDB
