@@ -219,6 +219,28 @@ Best practises:
 * **Avoid under-scaling and over-scaling** by correct scaling policies
 * **Automate** Auto Scaling with IaC!
 ### Elastic Beanstalk
+Elastic Beanstalk is a service that automates deployment, scaling, monitoring and managing applications. Its purpose is to simplify operations for developers without need to manage infrastructure, automating its managing. It supports multiple platforms \(Java, .NET, Python, Node.js, PHP, Go, Ruby\) and integrates other services \(e.g. like EC2, RDS, S3, CloudWatch, Auto Scaling\).
+
+Elastic Beanstalk consists of:
+* **Applications** - logical set of environments, versions and configurations
+* **Environments** - specific application instances working on defined infrastructure configuration, they divide to 2 tiers explained below
+  * **Web Server Tier** - supports services based on handling HTTP/HTTPS requests
+  * **Worker Tier** - processing tasks in the background, \(e.g. SQS queues\)
+* **Application Versions** - specific application version that can be deployed to an environment
+* **Environment Configurations** - environment settings configuration \(e.g. instance type, auto scaling and environment variables\)
+
+Elastic Beanstalk offers different deployment strategies:
+* **All at Once** - instant replacement of all instances, causes downtime so not so good
+* **Rolling** - gradual update of instances in groups, minimizes downtime
+* **Blue/Green** - deploying a new version in a parallel environment + redirecting traffic
+* **Immutable** - secure deployment by creating new instances and replacing old ones
+
+Best practises:
+* **Use HTTPS** with SSL/TLS certificates \(e.g. with ACM\)
+* **Use Auto Scaling and ELB** to assure high availability
+* **Customize infrastructure with .ebextensions**
+* **Use Platform Hooks** to run scripts at different life cycle states \(e.g. predeploy or postdeploy\)
+* **Automate** Elastic Beanstalk with IaC!
 ### Lambda
 ### Elastic Container Service \(ECS\)
 ### Elastic Kubernetes Service \(EKS\)
@@ -243,4 +265,4 @@ Best practises:
 ## Integration & Messaging
 ### Simple Queue Service \(SQS\)
 ## LocalStack
-## Akeero
+## Designing AWS Cloud Architecture
