@@ -196,6 +196,28 @@ Best practises:
 * **Optimize costs** using Spot Instances, Reserved Instances, etc. described in Billing & Costs
 * **Automate** EC2 with IaC!
 ### Auto Scaling
+Auto Scaling is a service that automatically adjusts the number of services \(EC2, ECS, DynamoDB\) instances to the workload. It provides high availability and scalability of application and cost optimization of used resources.
+
+Auto Scaling consists of:
+* **Launch Template/Configuration** - template containing the configuration of new instances to be launched by Auto Scaling
+* **Auto Scaling Group** - group of instances that are managed by Auto Scaling, takes parameters of minimum, maximum and desired number of running instances
+* **Scaling Policies** - policies determine how Auto Scaling adjusts the number of instances, types below
+  * **Target Tracking Scaling** - maintains a specific metric \(e.g. 60% CPU average usage\)
+  * **Step Scaling** - adds/removes instances by steps \(e.g. +2 instances at CPU average usage > 80%\)
+  * **Simple Scaling** - responds to a CloudWatch alarm with a simple action \(e.g. +1 instance\)
+* **Health Checks** - scaled instances status monitoring mechanism
+
+Best practises:
+* **Maintain some instances free for unexpected traffic spikes**
+* **Mix or use Spot Instances** to optimize costs if application can tolerate outages
+* **Use Termination Policies** to define which instances to delete first
+* **Execute scripts before instance deletion/launch** to e.g. drain traffic or initialize data
+* **Test scaling** with AWS Load Testing
+* **Use Instance Refresh** to automatically replace instances, e.g. when AMI is updated
+* **Integrate with ELB** to balance traffic incoming to instances
+* **Distribute instances across multiple AZs** - to assure high availability
+* **Avoid under-scaling and over-scaling** by correct scaling policies
+* **Automate** Auto Scaling with IaC!
 ### Elastic Beanstalk
 ### Lambda
 ### Elastic Container Service \(ECS\)
