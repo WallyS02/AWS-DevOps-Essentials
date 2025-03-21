@@ -172,12 +172,35 @@ Best practises:
 * **Automate** API Gateway with IaC!
 ## Computing
 ### Elastic Compute Cloud \(EC2\)
+EC2 is a virtual server service in cloud. It allows for flexible customization of instances, integration with other services and scaling instances if needed \(see Auto Scaling\).
+
+EC2 offers many types of instances, different types are differently optimized:
+* **General Purpose** - balanced CPU/RAM, e.g. T4g, suits web applications
+* **Compute Optimized** - high CPU performance, e.g. C7g, suits batch computing
+* **Memory Purpose** - large amount of RAM, e.g. R6i, suits databases, analytics
+* **Accelerated Computing** - GPU/TPU, e.g. P4, suits machine learning
+* **Storage Purpose** - high disk throughput, e.g. I4i, suits Big Data
+
+EC2 instances need to have configured a Amazon Machine Image \(AMI\) which contains operating system and desired configuration for created instance, e.g. Amazon Linux.\
+To securely connect to EC2 instance using SSH you need to create SSH key pair, you can create one while creating instance.\
+EC2 instance needs storage, it uses EBS that can be configured while creating instance.\
+You can run some configuration at creating EC2 instance - use User Data to provide configuration script.\
+To provide static IP address for an instance use Elastic IP, but remember to remove unused Elastic IPs!
+
+Best practises:
+* **Apply Immutable Infrastructure** - instead of updating instances, replace them with new ones \(AMI + AS\)
+* **Distribute instances across multiple AZs** - to assure high availability
+* **Use EBS snapshots for critical data**
+* **Apply Security Hardening** by switching off unused ports, updating OS and using minimal permissions
+* **Use Auto Scaling** for adjusting number of instances to the workload
+* **Optimize costs** using Spot Instances, Reserved Instances, etc. described in Billing & Costs
+* **Automate** EC2 with IaC!
 ### Auto Scaling
 ### Elastic Beanstalk
 ### Lambda
 ### Elastic Container Service \(ECS\)
-### Fargate
 ### Elastic Kubernetes Service \(EKS\)
+### Fargate
 ## Storage
 ### Simple Storage Service \(S3\)
 ### Elastic Block Store \(EBS\)
