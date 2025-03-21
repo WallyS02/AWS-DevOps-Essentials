@@ -149,6 +149,27 @@ Best practises:
 * **Integrate with Auto Scaling** to automatically add or remove instances in response to load
 * **Automate** ELB with IaC!
 ### API Gateway
+API Gateway is a managed service for creating, exposing, maintaining, monitoring and securing APIs at internet scale. It ensures high availability, scalability and security of APIs.
+
+API types:
+* **REST API** - traditional HTTP/REST applications
+* **HTTP API** - simplified version of REST API with lower costs \(e.g. integration with Lambda\)
+* **WebSocket API** - two-way real-time communication \(e.g. chats, games\)
+
+API Gateway consists of:
+* **Resources** - resources on which operations can be performed, each resource can have one or more HTTP methods, defined as URL paths
+* **Methods** - HTTP methods that define operations that can be performed on resources
+* **Stages** - API versions \(e.g. environment versions - prod/dev\), each stage has its own URL path and configuration, stage variables are environment variables of stage
+* **Deployments** - process of publishing API changes to a specific stage, supports rollbacks and canary deployments
+* **Integration** - integrate with e.g. Lambda, HTTP \(any endpoint\) or AWS Services as backend
+
+Best practises:
+* **Use Stages** to separate environments
+* **Use Authorization \(e.g. AWS Cognito\), Throttling, WAF Integration and HTTPS** to secure and protect API from attacks
+* **Use Cache** to optimize API efficiency
+* **Use CORS properly**
+* **Use Velocity Template Language \(VTL\)** to convert formats \(e.g. XML -> JSON\)
+* **Automate** API Gateway with IaC!
 ## Computing
 ### Elastic Compute Cloud \(EC2\)
 ### Auto Scaling
