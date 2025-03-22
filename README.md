@@ -254,7 +254,22 @@ Best practises:
 * **Keep stateless and idempotent design**
 * **Automate** Lambda with IaC!
 ### Elastic Container Service \(ECS\)
-### Fargate
+ECS is a managed container orchestration service that allows for running, scaling and monitoring containerized applications. It automatically scales number of containers in response to changing network traffic, integrates with Docker and other services.
+
+ECS consists of:
+* **Clusters** - resources \(EC2 instances or Fargate resources\) that run tasks and services
+* **Tasks Definitions** - configuration of tasks, defines e.g. Docker image, resources \(CPU and memory\), environment variables, IAM roles, network and volumes
+* **Tasks** - single container launch \(or multiple containers in one task\)
+* **Services** - manages the number of tasks instances in a cluster to ensure high availability and scalability, automatically registers tasks in the load balancer
+* **Launch Types** - how containers are launched, types below
+  * **EC2 Launch Type** - containers are launched on user-managed EC2 instances
+  * **Fargate Launch Type** - containers run on AWS-managed infrastructure, without the need to manage servers
+
+Best practises:
+* **Use Fargate to keep it simple, use EC2 to keep it low-cost**
+* **Use multiple AZs** to assure high availability
+* * **Use Provisioned Capacity to reduce cold starts**
+* **Automate** ECS with IaC!
 ### Elastic Kubernetes Service \(EKS\)
 ## Storage
 ### Simple Storage Service \(S3\)
@@ -267,6 +282,7 @@ Best practises:
 ### DynamoDB
 ### ElastiCache
 ## Security
+### Cognito
 ### Key Management Service \(KMS\)
 ### Secrets Manager
 ### Certificate Manager \(ACM\)
