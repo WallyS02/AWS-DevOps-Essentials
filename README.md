@@ -268,9 +268,28 @@ ECS consists of:
 Best practises:
 * **Use Fargate to keep it simple, use EC2 to keep it low-cost**
 * **Use multiple AZs** to assure high availability
-* * **Use Provisioned Capacity to reduce cold starts**
+* **Use Provisioned Capacity to reduce cold starts**
 * **Automate** ECS with IaC!
 ### Elastic Kubernetes Service \(EKS\)
+EKS is a managed Kubernetes cluster service that allows for running, scaling and managing containerized applications. It supports native k8s API, maintains scalability, integrates with other services and takes care of the availability, updates, and security of the control layer \(API Server, etcd, scheduler\).
+
+EKS consists of:
+* **Clusters** - groups of nodes that run containerized applications managed by Kubernetes
+* **Nodes** - Physical or virtual machines on which containers run, different node managing types below
+  * **Managed Node Groups** - managed groups of nodes that automatically manage updates and scaling
+  * **Self-Managed Nodes** - user-managed nodes that require manual configuration and management
+  * **Fargate** - containers are run on managed infrastructure without the need to manage nodes
+* **Kubernetes Objects** - Pods, Deployments, Services, Ingresses, etc.
+
+Use VPC CNI Plugin to integrate k8s network with VPC, each pod has its own IP from the VPC subnet.\
+Use IAM Roles for Service Accounts \(IRSA\) to authorize pods for services.
+
+Best practises:
+* **Use Cluster Autoscaler or Karpenter** to automatically adjust the number of nodes based on traffic
+* **Use Managed Node Groups if you want automatic AMI and Kubelet version updates**
+* **Backup cluster state** e.g. with Velero
+* **Right-size** cluster nodes to handled traffic
+* **Automate** EKS with IaC!
 ## Storage
 ### Simple Storage Service \(S3\)
 ### Elastic Block Store \(EBS\)
