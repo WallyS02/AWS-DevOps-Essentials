@@ -242,9 +242,20 @@ Best practises:
 * **Use Platform Hooks** to run scripts at different life cycle states \(e.g. predeploy or postdeploy\)
 * **Automate** Elastic Beanstalk with IaC!
 ### Lambda
+Lambda is a serverless compute service that runs code in response to events \(e.g. HTTP request or S3 change\) and automatically manages compute resources without need to manage infrastructure. It scales automatically and integrates with other services.
+
+Lambda consists of:
+* **Functions** - code that is ran in response to events, different runtimes are supported \(e.g. Node.js, Python, .NET, Java, Go or even custom\), configuration by environment variables, layers are used to reuse code by sharing libraries and other dependencies between multiple Lambdas
+* **Triggers/Events** - events that trigger function execution, related to other resources \(e.g. S3, API Gateway, etc.\) or external events \(e.g. HTTP request\)
+
+Best practises:
+* **Use Provisioned Concurrency to reduce cold starts**
+* **Use aliases and versions** to keep versions in order
+* **Keep stateless and idempotent design**
+* **Automate** Lambda with IaC!
 ### Elastic Container Service \(ECS\)
-### Elastic Kubernetes Service \(EKS\)
 ### Fargate
+### Elastic Kubernetes Service \(EKS\)
 ## Storage
 ### Simple Storage Service \(S3\)
 ### Elastic Block Store \(EBS\)
