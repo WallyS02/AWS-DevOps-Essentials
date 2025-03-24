@@ -319,6 +319,7 @@ Best practises:
 * **Use Presigned URLs** for temporary URLs for download/upload
 * **Block public access** for safety
 * **Automate** S3 with IaC!
+### Glacier
 ### Elastic Block Store \(EBS\)
 EBS is a managed block storage service for EC2 instances, providing persistent network drives.
 
@@ -330,7 +331,7 @@ EBS consists of:
   * **sc1 \(Cold HDD\)** - for rarely used data, high latency, low throughput, low costs, lowest IOPS
 * **Snapshots** - incremental volume backups stored in S3, can use Cross-Region Snapshots for assuring availability and durability
 
-Volumes type and size can be dynamically changed on-the-fly \(exept io1 -> io2\).\
+Volumes type and size can be dynamically changed on-the-fly \(except io1 -> io2\).\
 io1/io2 can be attached to multiple instances.\
 EBS snapshots can be used for building preconfigured AMIs.\
 Configure RAID 0/1 on EC2 for increased performance/redundancy.
@@ -341,7 +342,31 @@ Best practises:
 * **Replicate to Multiple AZs** to assure high availability
 * **Automate** EBS with IaC!
 ### Elastic File System \(EFS\)
-### Glacier
+EFS is a managed, scalable network file service \(NFS\) for EC2 instances, containers in ECS/EKS and Lambda functions. It works in a shared storage model, enabling data sharing across multiple instances and services in real time. It automatically scales its size, is available in multiple AZs and uses NFSv4.
+
+EFS offers different performance modes:
+* **General Purpose** - for standard workloads \(e.g. web applications\)
+* **Max I/O** - for high parallelism \(thousands of NFS connections, e.g. big data\)
+
+EFS offers different throughput modes:
+* **Bursting** - throughput scales with system size \(e.g. 1 TB = 50 MB/s burst\)
+* **Provisioned** - consistent throughput regardless of size \(e.g. 100 MB/s\)
+
+EFS offers different storage classes:
+* **Standard** - for frequent access
+* **Infrequent Access \(IA\)** - cheaper, for rarely used data
+
+EFS consists of:
+* **File Systems** - store data in a directory and file structure, works in one region but many AZs
+* **Mount Targets** - mount points in VPC subnets \(one per AZ\) that allow EC2 instances to access EFS via NFS, instance **2049 port** must be opened for NFS traffic
+* **Access Points** - access points with predefined paths \(root directory\), POSIX and IAM permissions
+
+Best practises:
+* **Use Lifecycle Manager** for automatic data transfer to IA storage class after e.g. 30/60/90 days
+* **Use AWS Backup** to create EFS snapshots
+* **Use User Data parameter in instance template in Auto Scaling** for automatic EFS mounting
+* **Use Mount Targets in multiple AZs** to assure high avaiability
+* **Automate** EFS with IaC!
 ### Elastic Container Registry \(ECR\)
 ## Databases
 ### Relational Database Service \(RDS\)
