@@ -320,6 +320,26 @@ Best practises:
 * **Block public access** for safety
 * **Automate** S3 with IaC!
 ### Elastic Block Store \(EBS\)
+EBS is a managed block storage service for EC2 instances, providing persistent network drives.
+
+EBS consists of:
+* **Volumes** - virtual disks connected to EC2 instances, types below
+  * **gp3/gp2 \(General Purpose\)** - universal SSD drive for e.g. file systems or web applications, low latency, high throughput, best price-performance ratio, average Input/Output Operations Per Second \(IOPS\)
+  * **io1/io2 \(Provisioned IOPS\)** - high performance for demanding workloads \(e.g. OLTP databases\), lowest latency, high throughput, high costs, high IOPS
+  * **st1 \(Throughput Optimized\)** - HDD drive with high throughput and average latency, throughput and costs, low IOPS
+  * **sc1 \(Cold HDD\)** - for rarely used data, high latency, low throughput, low costs, lowest IOPS
+* **Snapshots** - incremental volume backups stored in S3, can use Cross-Region Snapshots for assuring availability and durability
+
+Volumes type and size can be dynamically changed on-the-fly \(exept io1 -> io2\).\
+io1/io2 can be attached to multiple instances.\
+EBS snapshots can be used for building preconfigured AMIs.\
+Configure RAID 0/1 on EC2 for increased performance/redundancy.
+
+Best practises:
+* **Use Lifecycle Manager** for automatic creation and deletion of snapshots
+* **Right-size** by choosing proper type and size
+* **Replicate to Multiple AZs** to assure high availability
+* **Automate** EBS with IaC!
 ### Elastic File System \(EFS\)
 ### Glacier
 ### Elastic Container Registry \(ECR\)
