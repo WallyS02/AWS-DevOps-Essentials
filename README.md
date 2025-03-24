@@ -453,6 +453,29 @@ Best practises:
 * **Use partition + sort key combination** for range queries
 * **Automate** DynamoDB with IaC!
 ### ElastiCache
+ElastiCache is a managed in-memory cache service that speeds applications by storing frequently used data in RAM. It supports Redis and Memcached engines.
+
+Memcached engine:
+* Works as a single cache server with simple key-value model
+* Can be horizontally scaled
+* Data is ephemeral \(will dissapear after some time\), so no replication
+* Auto-Discovery - automatic node discovery by clients
+* Partitioning - distributing data across nodes
+
+Redis engine:
+* Can work in Cluster Mode - a group of nodes where Primary Node processes reads and writes and Replica Nodes only writes.
+* Sharding - sharing data across multiple nodes
+* Persistence - optional data storage on disk
+* Multi-AZ replication with auto failover
+* Support for data structures \(lists, sets\)
+
+Both engines need configuration \(e.g. maxmemory-policy, timeout\).
+
+Best practises:
+* **Choose right engine** - Redis for durability, replication, or data structures, Memcached for simple scenarios with horizontal scaling
+* **Optimize Time-to-Live \(TTL\)** to avoid memory overflow
+* As you should always, **encrypt data \(with KMS\) and  use SSL/TLS for connections**
+* **Automate** ElastiCache with IaC!
 ## Security
 ### Cognito
 ### Key Management Service \(KMS\)
