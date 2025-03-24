@@ -322,8 +322,6 @@ Best practises:
 ### Glacier
 Glacier is a storage service for long-term data archiving. It suits rarely accessed data in exchange for low costs of storing.
 
-Storage classes are the same as the classes for archives in S3, see S3.
-
 Glacier consists of:
 * **Vaults** - container for archives \(analogous to S3 bucket\)
 * **Archives** - single object \(file, zip, backup\) up to 40 TB in size
