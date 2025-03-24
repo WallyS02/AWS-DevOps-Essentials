@@ -424,6 +424,34 @@ Best practises:
 * As you should always, **encrypt data \(with KMS\) and  use SSL/TLS for connections**
 * **Automate** RDS with IaC!
 ### DynamoDB
+DynamoDB is a managed NoSQL database service that offers low latency and automatic scalability. It stores data in key-value or document model.
+
+DynamoDB consists of:
+* **Tables** - classic data collections, they contain: attributes - fields, Partition Keys - uniquely identifies an element and distributes data across partitions, Sort Keys - optional, enables sorting and range queries
+* **Global Secondary Indexes \(GSI\)** - additional indexes with their own partition/sort keys, asynchronously updated
+* **Local Secondary Indexes \(GSI\)** - indexes that share the partition key with the table
+
+DynamoDB offers different capacity modes:
+* **Provisioned** - manual RCU/WCU \(read/write units\) setting, with auto-scaling option
+* **On-Demand** - auto-scaling, pay-per-request
+
+You can perform different actions to access database:
+* **PutItem/GetItem** - save/read single item
+* **Query** - get items from one partition \(efficient\)
+* **Scan** - search entire table
+
+Like in RDS, you can automate backups and use Point-in-Time Recovery.\
+To enhance failure resistance use **Global Tables** - cross-region data replication \(multi-master\).
+Use **DynamoDB Streams** to detect changes in data and use it in Event-Driven Architecture.
+
+Best practises:
+* **Avoid using Scan action** because it is costly and slow - design queries using Query and indexes
+* **Use Time-to-Live \(TTL\)** to automatically remove old data \(user sessions\)
+* As you should always, **encrypt data \(with KMS\) and  use SSL/TLS for connections**
+* **Use DynamoDB Accelerator \(DAX\)** to enable read cache
+* **Avoid hot partition** by using high cardinality partition key \(e.g. UserID instead of Status\)
+* **Use partition + sort key combination** for range queries
+* **Automate** DynamoDB with IaC!
 ### ElastiCache
 ## Security
 ### Cognito
