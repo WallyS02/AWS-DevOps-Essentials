@@ -320,6 +320,29 @@ Best practises:
 * **Block public access** for safety
 * **Automate** S3 with IaC!
 ### Glacier
+Glacier is a storage service for long-term data archiving. It suits rarely accessed data in exchange for low costs of storing.
+
+Storage classes are the same as the classes for archives in S3, see S3.
+
+Glacier consists of:
+* **Vaults** - container for archives \(analogous to S3 bucket\)
+* **Archives** - single object \(file, zip, backup\) up to 40 TB in size
+* **Jobs** - process that initiates the download of the archive, types based on download speed below
+  * **Expedited** - 1–5 minutes \(additional charge\)
+  * **Standard** - 3-5 hours
+  * **Bulk** - 5-12 hours \(cheapest for large collections\)
+ 
+Glacier offers different layers of storing:
+* **Instant Retrieval** - for fast access \(ms\), but higher costs, minimum 90 days of storing
+* **Flexible Retrieval** - for average access \(minutes to hours\) with average costs, minimum 90 days of storing
+* **Deep Archive** - for low costs, but longer access time \(hours\), minimum 180 days of storing
+
+Use **Vault Lock Policies** to force compliance rules \(e.g. WORM – Write Once Read Many\).
+
+Best practises:
+* **Avoid small files, merge into larger archives** for reducing costs
+* **Use 3-2-1 backup strategy** and store one backup in Glacier
+* **Automate** Glacier with IaC!
 ### Elastic Block Store \(EBS\)
 EBS is a managed block storage service for EC2 instances, providing persistent network drives.
 
