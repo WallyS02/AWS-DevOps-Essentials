@@ -404,6 +404,25 @@ Best practises:
 * **Automate** ECR with IaC!
 ## Databases
 ### Relational Database Service \(RDS\)
+RDS is a managed relational database service that supports many popular relational engines \(e.g. MySQL, PostgreSQL, MariaDB, Oracle, SQL Server, Amazon Aurora\). It manages instalation, patches, backups, scaling of database and assures its high availability.
+
+To assure high availability and scalability RDS applies:
+* **Multi-AZ Deployment** - automatic synchronous replication to standby instance in another AZ \(failover in <2 min\)
+* **Read Replicas** - read-only replicas to offload the primary database \(supported within a region or cross-region\)
+* **Vertical and Horizontal Scaling** - vertical: changing the instance type \(e.g. from db.t3.medium to db.r5.large\), horizontal: adding read replicas
+
+RDS integrates with IAM to authenticate database users and management operations.\
+Use **Automated Backups and Point-in-Time Recovery** to run automated, regular db backups \(e.g. daily\) stored up to 35 days and restore the database to any point within the retention period.\
+You can also run standard **Manual Snapshots** stored in S3.\
+You can use Aurora to automatically scale capacity to 128 TB based on workload.\
+You can **Reserve Instances** for 1 or 3 years to pay less.\
+
+Best practises:
+* **Avoid public access** for safety
+* **Use Automated Backups** to prevent losing data
+* **Right-size** storage and class to expected workload and data size
+* As you should always, **encrypt data \(with KMS\) and  use SSL/TLS for connections**
+* **Automate** RDS with IaC!
 ### DynamoDB
 ### ElastiCache
 ## Security
