@@ -389,6 +389,19 @@ Best practises:
 * **Use Mount Targets in multiple AZs** to assure high avaiability
 * **Automate** EFS with IaC!
 ### Elastic Container Registry \(ECR\)
+ECR is a managed Docker container image registry that hosts and manages them. It integrates with every service that uses containers.
+
+ECR consists of:
+* **Repositories** - private or public Docker images collections with multi-architecture support, one repository exists in one region, replicate between regions if needed
+* **Images** - versioned artifacts by using tags
+* **Image Scanning** - automatic detection of vulnerabilities \(CVE\) in image layers
+* **Lifecycle Policies** - automatic images deletion \(e.g. keep last 10 tags, delete images older than 30 days\)
+
+Best practises:
+* **Avoid latest tag** to keep it consistent
+* **Use Immutable Tags** for production environments
+* **Use ECR Pull Through Cache** for image caching to reduce transfer costs
+* **Automate** ECR with IaC!
 ## Databases
 ### Relational Database Service \(RDS\)
 ### DynamoDB
