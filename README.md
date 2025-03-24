@@ -292,6 +292,33 @@ Best practises:
 * **Automate** EKS with IaC!
 ## Storage
 ### Simple Storage Service \(S3\)
+S3 is a object storage service that allows for high availability, security and endless scalability of storage. It integrates with nearly all of services.
+
+S3 consists of:
+* **Buckets** - containers for objects, named with globally unique names, created inside specified region, versioning object changes
+* **Objects** - files + metadata \(up to 5TB\), identified by key \(path\)
+* **Storage Classes** - types of storage that differ in availability, access time and costs, types below
+  * **S3 Standard** - highly available, for frequent access, high costs
+  * **S3 Intelligent-Tiering** - automatically transfers data between layers based on usage frequency
+  * **S3 Standard-IA** - for rare access \(e.g. backups\), less available and cheaper than standard
+  * **S3 One Zone-IA** - for volatile data, stored in only one AZ, low availability and costs
+  * **S3 Glacier Instant** - for archives \(min. 90 days\) with fast access, low costs
+  * **S3 Glacier Deep** - for deep, long-term archives \(min. 180 days\), lowest availability and costs
+
+Access to buckets should be controlled - **use IAM and Bucket Policies**.\
+**Encrypt** stored data and during communication with buckets, **log** bucket actions.\
+Use S3 **Event Notifications** to automatically run Lambda, SQS, SNS actions in response to bucket changes.\
+Use **Lifecycle Policies** to automatically transfer data between storage layers or remove old versions.\
+Use **Cross-Region Replication \(CRR\) and Same-Region Replication \(SRR\)** to replicate data to assure their availability and durability.\
+Use **s3-accelerate.amazonaws.com \(Transfer Acceleration\) and Multipart Upload** for faster large file transfer, use **S3 Select & Glacier Select** to extract only needed data from large files.\
+Use **S3 Storage Lens** for advanced metrics analysis and cost optimization.
+
+Best practises:
+* **Use bucket naming convention and tags** to keep it consistent
+* **Use CORS** to configure access headers
+* **Use Presigned URLs** for temporary URLs for download/upload
+* **Block public access** for safety
+* **Automate** S3 with IaC!
 ### Elastic Block Store \(EBS\)
 ### Elastic File System \(EFS\)
 ### Glacier
