@@ -531,6 +531,16 @@ Best practises:
 * **Block key deletion** to prevent accidental key deletion
 * **Automate** KMS with IaC!
 ### Secrets Manager
+Secrets Manager is a managed service for secure storage and rotation of secrets \(e.g. Database passwords, API keys, TLS certificates, Access Tokens\).
+
+Secrets Manager can automatically rotate secrets, it has built-in support for RDS, Redshift, DocumentDB \(rotation every X days\) and supports creating own rotation functions for any secret.\
+Stored secrets are encrypted with KMS keys \(default by AWS-Managed Key, but CMK can be used\) and versioned.\
+Service integrates with other services that need to use sensitive data.
+
+Best practises:
+* **Use rotation** for sensitive secrets
+* **Principle of Least Privilege** - grant only *secretsmanager:GetSecretValue* access to application roles
+* **Automate** Secrets Manager with IaC!
 ### Certificate Manager \(ACM\)
 ### Web Application Firewall \(WAF\)
 ## Monitoring
