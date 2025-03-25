@@ -598,4 +598,19 @@ Best practises:
 * **Automate** CloudWatch with IaC!
 ## Integration & Messaging
 ### Simple Queue Service \(SQS\)
+SQS is a managed message queue service that enables asynchronous communication between application components \(microservices, servers, Lambda functions\). It offers high throughput: Up to 3,000 messages/second \(Standard\) and 300/second \(FIFO\). It integrates with some services \(e.g. Lambda\) and supports Event-Driven Architecture.
+
+SQS consists of:
+* **Queues** - main component of the service, types below
+  * **Standard** - at-least-once delivery guarantee, no message order, high throughput
+  * **First-In-First-Out \(FIFO\)** - exactly-once processing, strict message order, lower throughput than Standard
+* **Messages** - main object going through queue, up to 256 KB of text, metadata can be added, Time-to-Live \(TTL\) can be set to specify how long message will stay in queue
+* **Visibility Timeout** - amount of time a message is invisible to other consumers after being taken from queue \(default 30 seconds\), if it is not deleted, it will return to the queue
+* **Dead-Letter Queue \(DLQ\)** - queue for messages that failed to process after a specified number of attempts \(maxReceiveCount\)
+
+Best practises:
+* **Use Standard type for high throughput and FIFO when order and no duplicates are crucial**
+* **Batch message sending** for costs optimization
+* **Use Long Polling** to reduce empty responses \(ReceiveMessage waits up to 20 seconds for messages to appear\)
+* **Automate** SQS with IaC!
 ## LocalStack
