@@ -478,6 +478,7 @@ Best practises:
 * **Automate** ElastiCache with IaC!
 ## Security
 ### Cognito
+Cognito is a managed AWS service for authentication, authorization, and user management in applications.
 ### Key Management Service \(KMS\)
 KMS is a managed service for creating and controlling cryptographic keys used to encrypt data in AWS. It allows for generating and storing keys, automatic key rotation and integrates with most of services.
 
@@ -490,7 +491,7 @@ KMS consists of:
 
 For **S3** enable SSE-KMS encryption for buckets.\
 For **EBS** encrypt volumes with CMK.\
-For **Lambda** encrypt enrionment variables with KMS key.\
+For **Lambda** encrypt environment variables with KMS key.\
 For **RDS** encrypt databases during their creation.\
 Integrate with **TLS** for in-transit encryption.\
 Store encrypted secrets in **Secrets Manager**, see below.
@@ -498,7 +499,7 @@ Store encrypted secrets in **Secrets Manager**, see below.
 Best practises:
 * **Use human-friendly aliases** instead of key id
 * **Use Automatic Rotation** for keys, e.g. rotation every year, old versions of keys are stored for data decryption
-* **Block key removing** to prevent accidental key removal
+* **Block key deletion** to prevent accidental key deletion
 * **Automate** KMS with IaC!
 ### Secrets Manager
 ### Certificate Manager \(ACM\)
