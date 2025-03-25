@@ -479,6 +479,35 @@ Best practises:
 ## Security
 ### Cognito
 Cognito is a managed AWS service for authentication, authorization, and user management in applications.
+
+Cognito consists of:
+* **User Pools** - user directories for registration, login and profile management \(authentication\)
+* **Identity Pools** - service that issues users **temporary** AWS credentials \(e.g. access to S3, DynamoDB\) based on their identity \(authorization\)
+
+User Pools functions:
+* **Registration/Login** - supports login via email, phone number, social media \(Google, Facebook, SAML/OIDC\)
+* **Password policy enforcement** - e.g. minimum length, special characters
+* **Multi-Factor Authentication \(MFA\)**
+* **Adaptive Authentication** - detection of unusual logins \(e.g. from a new location\)
+* **Hosted UI** - ready-made login interface with customizable CSS
+* **User Migration** - import existing accounts while preserving passwords
+
+Identity Pools functions:
+* **Authorization to access resources** - generating Temporary AWS Keys \(STS\) for IAM Roles, support for non-logged-in users \(optional\)
+* **Integration with User Pools** - combining Authentication and Authorization
+* **Federated Identity** - binds logins from User Pool, social providers or Amazon
+
+Cognito also supports JWT tokens:
+* **ID Token** - contains user data \(e.g. email, groups\)
+* **Access Token** - used to authorize requests to the backend
+* **Refresh Token** - refreshes token validity without re-logging in
+
+Cognito integrates with services that may need authorization \(e.g. API Gateway, Lambda\), web and mobile applications and services to which access should be controlled \(e.g. S3, DynamoDB\).
+
+Best practises:
+* **Validate and Configure JWT Tokens** - always validate JWT signature and audience \(aud/client_id\) and configure id_token and access_token \(default 1 hour\)
+* **Use MFA** for critical applications
+* **Automate** Cognito with IaC!
 ### Key Management Service \(KMS\)
 KMS is a managed service for creating and controlling cryptographic keys used to encrypt data in AWS. It allows for generating and storing keys, automatic key rotation and integrates with most of services.
 
