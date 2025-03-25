@@ -614,3 +614,10 @@ Best practises:
 * **Use Long Polling** to reduce empty responses \(ReceiveMessage waits up to 20 seconds for messages to appear\)
 * **Automate** SQS with IaC!
 ## LocalStack
+LocalStack is a tool that emulates AWS services in a local environment, making development and testing possible without access to the AWS cloud.
+
+LocalStack emulates popular AWS services \(e.g. Lambda, EC2, S3, DynamoDB, SQS, API Gateway, CloudFront, CloudWatch, IAM\).\
+LocalStack runs as a set of Docker containers and is configured to run services with Docker Compose or environment variables \(e.g. SERVICES=s3,lambda\).\
+LocalStack integrates with Terraform and AWS CLI, both can be used to manage local infrastructure emulation.
+
+[https://www.localstack.cloud/](https://www.localstack.cloud/)
