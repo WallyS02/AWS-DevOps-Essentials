@@ -574,6 +574,28 @@ Best practises:
 * **Automate** WAF with IaC!
 ## Monitoring
 ### CloudWatch
+CloudWatch is a monitoring and observability service that collects metrics, logs, and events from cloud resources and applications.
+
+CloudWatch consists of:
+* **Metrics** - desired mesaures of specified resources, divided on standard - automatically collected from services \(e.g. EC2, RDS, Lambda\), and custom - sent by applications \(e.g. number of active users\), metrics can be grouped into namespaces
+* **Logs** - storage and analysis of application logs, can be organised into Log Groups and use Log Streams - single log streams within a group, CloudWatch Logs Insights can be used for SQL-like query log analysis
+* **Alarms** - automatic notifications and actions when metric thresholds are exceeded
+* **Dashboards** - configurable dashboards with widgets \(metrics, logs, charts\)
+* **EventBridge** - reactions to changes in cloud \(e.g. EC2 startup, Lambda error\) via AWS EventBridge
+
+Key metrics for example services:
+* **EC2** - CPUUtilization, FreeStorageSpace, NetworkIn/Out, StatusCheckFailed
+* **RDS** - CPUUtilization, NetworkIn/Out, FreeStorageSpace, DatabaseConnections
+* **Lambda** - Errors, Duration, ConcurrentExecutions, Throttles, Invocations
+* **S3** - NumberOfObjects, BucketSizeBytes
+
+You can integrate CloudWatch with Prometheus/Grafana by using CloudWatch Data Source in Grafana.
+
+Best practises:
+* **Always monitor and observe services and resources** to keep everything in tact and working
+* **Set up alerts** that send notifications and take actions to not to be surprised by unexpected failures
+* **Structure logs** by using JSON and Embedded Metric Fromat \(EMF\)
+* **Automate** CloudWatch with IaC!
 ## Integration & Messaging
 ### Simple Queue Service \(SQS\)
 ## LocalStack
