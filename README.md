@@ -542,6 +542,16 @@ Best practises:
 * **Principle of Least Privilege** - grant only *secretsmanager:GetSecretValue* access to application roles
 * **Automate** Secrets Manager with IaC!
 ### Certificate Manager \(ACM\)
+ACM is a managed service that allows you to easily create, store, and renew SSL/TLS certificates. These certificates are used to secure communication between the client and the server \(e.g. HTTPS for websites, APIs, load balancers\). Service offers free public certificates for servces \(e.g. CloudFront, ALB, API Gateway\) and automatically renews certificates \(with no risk of expiration\). Encrypted certificates are stored in KMS.
+
+Certificates divide on public and private. Public certificates are used for securing public domains, private are used for securing internal services inside VPC \(e.g. communication between microservices\).\
+Domain ownership is verificated by 2 methods: DNS method - adding CNAME record to DNS \(e.g. Route 53\), recommended for automation and Email method - manual confirmation by domain owner, less recommended for automation.\
+You can use Subject Alternative Names \(SANs\) to add multiple domains to one certificate.
+
+Best practises:
+* **Use DNS verification method** to automate verification
+* **Use correct region for certificate** - e.g. CloudFront requires certificates from us-east-1 region
+* **Automate** ACM with IaC!
 ### Web Application Firewall \(WAF\)
 ## Monitoring
 ### CloudWatch
