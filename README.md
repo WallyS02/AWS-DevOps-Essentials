@@ -542,7 +542,7 @@ Best practises:
 * **Principle of Least Privilege** - grant only *secretsmanager:GetSecretValue* access to application roles
 * **Automate** Secrets Manager with IaC!
 ### Certificate Manager \(ACM\)
-ACM is a managed service that allows you to easily create, store, and renew SSL/TLS certificates. These certificates are used to secure communication between the client and the server \(e.g. HTTPS for websites, APIs, load balancers\). Service offers free public certificates for servces \(e.g. CloudFront, ALB, API Gateway\) and automatically renews certificates \(with no risk of expiration\). Encrypted certificates are stored in KMS.
+ACM is a managed service that allows you to easily create, store, and renew SSL/TLS certificates. These certificates are used to secure communication between the client and the server \(e.g. HTTPS for websites, APIs, load balancers\). Service offers free public certificates for servces \(e.g. CloudFront, ALB, API Gateway, Cognito\) and automatically renews certificates \(with no risk of expiration\). Encrypted certificates are stored in KMS.
 
 Certificates divide on public and private. Public certificates are used for securing public domains, private are used for securing internal services inside VPC \(e.g. communication between microservices\).\
 Domain ownership is verificated by 2 methods: DNS method - adding CNAME record to DNS \(e.g. Route 53\), recommended for automation and Email method - manual confirmation by domain owner, less recommended for automation.\
@@ -553,9 +553,27 @@ Best practises:
 * **Use correct region for certificate** - e.g. CloudFront requires certificates from us-east-1 region
 * **Automate** ACM with IaC!
 ### Web Application Firewall \(WAF\)
+WAF is a managed firewall service that protects web applications from common attacks such as SQL injections, XSS, DDoS and Bad Bots, it works at the application layer \(7\). It integrates with services that need protection \(e.g. CloudFront, ALB, API Gateway\).
+
+WAF consists of:
+* **Web ACLs \(Access Control Lists\)** - set of rules that determine which requests are blocked or allowed
+* **Rules** - specified conditions when requests are allowed, blocked or count, they can involve: IP match \(IP addresses and CIDR ranges\), String Match \(patterns in headers, body or URI\), Regex \(advanced matches\), Geographic Match \(geographic location\), types below
+  * **Custom Rules** - user-defined rules
+  * **Managed Rules** - predefined rules
+  * **Rate-Based Rules** - rules that automatically block IP addresses sending too many requests in a short period of time \(e.g. >100 requests/5 minutes\)
+* **Rule Groups** - sets of rules, types below
+  * **Managed Rule Groups** - ready-made rulesets from AWS or partners \(e.g. AWS Managed Rules for OWASP Top 10\)
+  * **Custom Rule Groups** - custom rules created by yourself
+* **IP Sets** - IP Allow/Block Lists
+
+Best practises:
+* **Use Managed Rules** to protect services from OWASP Top 10, bots or scanners
+* **Use Custom Rules** for specific needs \(e.g. block known malicious IP addresses, detect unusual attacks\)
+* **Rate limit** login endpoints \(e.g. /login\) to prevent brute-force attacks
+* **Use rules hierarchy** by configuring rules priorities
+* **Automate** WAF with IaC!
 ## Monitoring
 ### CloudWatch
 ## Integration & Messaging
 ### Simple Queue Service \(SQS\)
 ## LocalStack
-## Designing AWS Cloud Architecture
