@@ -6,7 +6,7 @@ AWS is a cloud platform that offers many networking, computing, storage, etc. se
 #### Regions
 Regions are physical locations in the world where AWS hosts their data centers. Each region consists of separate and isolated Availability Zones. Regions are independent of each other and may differ e.g. in laws \(e.g. RODO in Europe\). When creating infrastructure remember to choose regions close to end users of infrastructure, it minimizes latencies.\
 Some regions examples:
-* use-east-1 - Northern Virginia, USA
+* us-east-1 - Northern Virginia, USA
 * eu-west-1 - Ireland
 * ap-southeast-1 - Singapore
 #### Availability Zones
