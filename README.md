@@ -1,4 +1,4 @@
-# AWS-DevOps-Essentials
+# AWS DevOps Essentials
 ## If I'll find any other feature to be useful - it'll surely be added!
 ## Basics
 AWS is a cloud platform that offers many networking, computing, storage, etc. services. It allows for building scalable, flexible and automated IT infrastructure.
