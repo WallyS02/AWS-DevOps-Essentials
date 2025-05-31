@@ -463,7 +463,7 @@ Memcached engine:
 * Partitioning - distributing data across nodes
 
 Redis engine:
-* Can work in Cluster Mode - a group of nodes where Primary Node processes reads and writes and Replica Nodes only writes.
+* Can work in Cluster Mode - a group of nodes where Primary Node processes reads and writes and Replica Nodes only reads.
 * Sharding - sharing data across multiple nodes
 * Persistence - optional data storage on disk
 * Multi-AZ replication with auto failover
