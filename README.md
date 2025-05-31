@@ -429,7 +429,7 @@ DynamoDB is a managed NoSQL database service that offers low latency and automat
 DynamoDB consists of:
 * **Tables** - classic data collections, they contain: attributes - fields, Partition Keys - uniquely identifies an element and distributes data across partitions, Sort Keys - optional, enables sorting and range queries
 * **Global Secondary Indexes \(GSI\)** - additional indexes with their own partition/sort keys, asynchronously updated
-* **Local Secondary Indexes \(GSI\)** - indexes that share the partition key with the table
+* **Local Secondary Indexes \(LSI\)** - indexes that share the partition key with the table
 
 DynamoDB offers different capacity modes:
 * **Provisioned** - manual RCU/WCU \(read/write units\) setting, with auto-scaling option
