@@ -16,7 +16,7 @@ IAM manages access to resources and services in cloud. Access is based on create
 
 **Users** are individual persons or applications that can access and use cloud. \
 **Groups** are sets of users that can be assigned common permissions.\
-**Roles** are sets of permissions that can be assigned to users.\
+**Roles** are identities with specific permissions and no password or key, that can be temporarily assumed by entities (e.g. services).\
 **Policies** are documents that define permissions and resources they affect. Attach them to users, groups and roles \(best practise - attach to groups or roles\).
 
 Always follow the **Principle of Least Privilege** that states that users should only have the permissions that they need to perform their tasks.\
