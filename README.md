@@ -55,7 +55,7 @@ Tips for optimizing costs:
 * Resource Tagging - tag resources to analyse costs by projects, environments, etc.
 * Alerts - set up alerts for unexpected cost rises
 * Automatic resource shutdown - use Lambda + CloudWatch Events to shut down unused dev/test environments after hours
-* Remove used resources - EBS volumes without EC2 assignment, Elastic IPs without active instances, forgotten EBS snapshots, etc.
+* Remove unused resources - EBS volumes without EC2 assignment, Elastic IPs without active instances, forgotten EBS snapshots, etc.
 * Use Infracost with IaC to analyse costs
 ## Networking
 ### Virtual Private Cloud \(VPC\)
